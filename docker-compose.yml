@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dev
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    image: ruby:3.1
+    command: bash -c "bundle install && rails db:create && rails db:migrate && rails s -b '0.0.0.0'"
+    volumes:
+      - ".:/app"
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
