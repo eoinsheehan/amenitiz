@@ -41,7 +41,5 @@ gem "pry-rails", "~> 0.3.11"
 gem "pry-byebug", "~> 3.8"
 gem "dockerfile-rails", ">= 1.7", group: :development
 gem "aws-sdk-s3", "~> 1.180", require: false
-gem "vcr", "~> 6.3"
-gem "webmock", "~> 3.25"
 gem "standard", "~> 1.45"
 gem "vite_rails", "~> 3.0"
