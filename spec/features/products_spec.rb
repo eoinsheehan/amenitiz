@@ -1,10 +1,11 @@
 require "rails_helper"
 RSpec.feature "Products", js: true do
   context "when user views all products" do
+    let(:products) { build_list(:product, 2) }
     it "renders list of all products" do
       visit "/products"
       expect(page).to have_content "List of all products available"
-      expect(page).to have_content "Green tea"
+      expect(page).to have_link "Green Tea"
     end
   end
   context "when user clicks on a product" do
