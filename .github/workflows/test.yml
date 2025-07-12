@@ -13,6 +13,9 @@ jobs:
   Test:
     runs-on: ubuntu-latest
 
+    environment:
+      DB_HOST: localhost
+
     services:
       db:
         image: postgres:13
