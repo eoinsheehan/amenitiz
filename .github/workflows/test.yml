@@ -7,13 +7,13 @@ on:
       - 'main'
 
 env:
-  RAILS_MASTER_KEY: ${{secrets.RAILS_MASTER_KEY}}
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
 jobs:
   Test:
     runs-on: ubuntu-latest
 
-    environment:
+    env:
       DB_HOST: localhost
 
     services:

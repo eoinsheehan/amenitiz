@@ -34,6 +34,7 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'database_cleaner-active_record'
 end
 
 gem "rspec-rails", "~> 7.1", groups: [:development, :test]
