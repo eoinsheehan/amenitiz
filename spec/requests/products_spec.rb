@@ -24,5 +24,25 @@ RSpec.describe 'Products', type: :request do
       expect(data.map { |p| p['name'] }).to include('green tea', 'coffee')
     end
   end
+
+  describe 'GET /product/:id (HTML)' do
+    it 'renders the HTML view' do
+      get '/products/1'
+      expect(response).to have_http_status(:ok)
+      expect(response.content_type).to include('text/html')
+      expect(response.body).to include('green tea')
+    end
+  end
+
+  describe 'GET /products.json (JSON)' do
+    it 'returns JSON data for the relevant product' do
+      get "/products/#{green_tea.id}.json"
+      expect(response).to have_http_status(:ok)
+      expect(response.content_type).to include('application/json')
+
+      data = JSON.parse(response.body)
+      expect(data["name"]).to eq('green tea')
+    end
+  end
 end
 
