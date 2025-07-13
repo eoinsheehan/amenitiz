@@ -11,6 +11,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
+    ActiveRecord::Base.connection.reconnect! # Reconnect to the database
+    Rails.application.load_tasks
+Rake::Task['db:migrate'].invoke
     if config.use_transactional_fixtures?
       raise(<<-MSG)
         Delete line `config.use_transactional_fixtures = true` from rails_helper.rb
@@ -27,6 +30,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    
     DatabaseCleaner.strategy = :transaction
   end
 
