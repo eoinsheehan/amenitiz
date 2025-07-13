@@ -17,6 +17,7 @@ Administrative features include:
 - Rails
 - Postgres
 - Node??
+- Yarn
 
 * Configuration
 
