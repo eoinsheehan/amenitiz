@@ -1,0 +1,55 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'main'
+
+env:
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+
+    env:
+      DB_HOST: localhost
+
+    services:
+      db:
+        image: postgres:13
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-timeout=30s
+          --health-interval=5s
+          --health-retries=3
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: test
+
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Prepare the database
+        run: |
+          RAILS_ENV=test bin/rails db:create
+          RAILS_ENV=test bin/rails db:migrate
+          RAILS_ENV=test bin/rails db:seed
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - name: Yarn install
+        run: yarn install
+      - name: RSpec
+        run: bundle exec rspec --format documentation --exclude-pattern "spec/features/*_spec.rb"
+      - uses: nanasess/setup-chromedriver@v2
+      - name: Capybara
+        run: bundle exec rspec --format documentation --pattern "spec/features/*_spec.rb"
