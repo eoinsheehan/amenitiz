@@ -28,6 +28,8 @@ Administrative features include:
 TODO:
 bundle exec rspec (to ensure that the appropriate version of rspec is being used)
 
+Need to have chromedriver installed locally to run the feature test suite.
+
 ## Deployment instructions
 The application is automatically deployed to fly.io when branches are merged to main.
 
