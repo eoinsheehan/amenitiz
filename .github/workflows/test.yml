@@ -53,3 +53,5 @@ jobs:
       - uses: nanasess/setup-chromedriver@v2
       - name: Capybara
         run: bundle exec rspec --format documentation --pattern "spec/features/*_spec.rb"
+      - name: Vitest
+        run: yarn test
