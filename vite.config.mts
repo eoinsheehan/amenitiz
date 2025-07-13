@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite'
-import RubyPlugin from 'vite-plugin-ruby'
+import ViteRails from 'vite-plugin-rails'
 
 export default defineConfig({
+  build: { sourcemap: false },
   plugins: [
-    RubyPlugin(),
+    ViteRails(),
   ],
 })
