@@ -42,4 +42,16 @@ Requirements for running the app locally are as follows:
 To start the application with a Postgres DB run the following:
 `docker compose up`
 
+Postgres is exposed on port 5354??? so that this can be accessed from your local computer
+
+then you need to run 
+
+bundle exec rails db:create
+`bundle exec rails db:migrate`
+`bundle exec rails s` to get the application up and running
+
+or alternatively
+
+`bundle exec rails c` to inspect the application
+
 This will start an instance of a PostgresDB locally and connect the rails application to it.
