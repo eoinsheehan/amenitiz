@@ -1,18 +1,12 @@
 class CheckoutController < ApplicationController
-def create
-  items = checkout_params[:items]
-  total = items.sum do |item|
-    product = Product.find(item[:product_id])
-    product.price * item[:quantity]
+  def create
+    result = CheckoutCalculator.new(cart: checkout_params).call
+    render json: result, status: :ok
   end
 
-  render json: { items:, total: }
-end
+  private
 
-private
-
-def checkout_params
-  params.require(:checkout).permit(items: [:product_id, :quantity])
-end
-
+  def checkout_params
+    params.permit(:total_cost, items: [:code, :quantity, :cost])
+  end
 end
