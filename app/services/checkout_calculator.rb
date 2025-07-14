@@ -18,13 +18,17 @@ class CheckoutCalculator
   end
 
   def item_cost(item:)
-    product = Product.find(item[:id])
-    case product.promotion_code
-    when "BOGO"
-      paid_quantity = (item[:quantity] / 2.0).ceil
+    quantity = item[:quantity]
+    product = Product.find_by(code: item[:code])
+    promotion = Promotion.find_by(code: product.promotion_code) if product.promotion_code
+    if promotion&.code == "BOGO"
+      paid_quantity = (quantity / 2.0).ceil
       product.price * paid_quantity
+    elsif promotion&.code&.start_with?("DIS") && quantity >= promotion.threshold
+      adjusted_price = product.price * (1 - promotion.discount)
+      (adjusted_price * quantity).round(2)
     else
-      product.price * item[:quantity]
+      product.price * quantity
     end
   end
 end
