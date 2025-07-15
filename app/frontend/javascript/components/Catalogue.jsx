@@ -10,9 +10,9 @@ const Catalogue = () => {
   }, [])
 
   return (
-    
+
     <div className='container mt-3'>
-      List of all blog products.
+      List of all products
       {data.map((element) =>
         <div key={element.id}>
           <Link to={`/products/${element.id}`}>{element.name}</Link>
