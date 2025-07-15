@@ -25,8 +25,8 @@ RSpec.describe "Checkout", type: :request do
         json = JSON.parse(response.body)
 
         expect(json["items"]).to match_array([
-          {"code" => "GT1", "quantity" => 2},
-          {"code" => "CF1", "quantity" => 1}
+          {"code" => "GT1", "quantity" => 2, "cost" => 30.00},
+          {"code" => "CF1", "quantity" => 1, "cost" => 10.00}
         ])
 
         expect(json["total_cost"]).to eq(40.0)

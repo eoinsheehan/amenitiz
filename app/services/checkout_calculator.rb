@@ -1,7 +1,8 @@
 class CheckoutCalculator
-  attr_reader :items
+  attr_reader :items, :cart
 
   def initialize(cart:)
+    @cart = cart
     @items = cart[:items]
   end
 
@@ -12,9 +13,16 @@ class CheckoutCalculator
   private
 
   def total_cost
-    items.sum do |item|
-      item_cost(item:)
+    total = cart[:total_cost]
+    items.each do |item|
+      item[:cost] = item_cost(item:)
+      if total
+        total += item[:cost]
+      else
+        total = item[:cost]
+      end
     end
+    total
   end
 
   def item_cost(item:)

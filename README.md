@@ -4,56 +4,31 @@ The purpose of this application is to provide a check out service for calculatin
 
 The customer can calculate the cost of the checkout in any order.
 
-Administrative features include:
-- Ability to add/remove products in line with availability
-- Ability to add/remove offers which can be associated with products.
-
-## Ruby version
-- 3.1.2 (As specified in the .ruby-version file)
-
-* System dependencies
+## System dependencies
 - Docker
-- Ruby
+- Ruby (version specified in .ruby-verion file)
 - Rails
-- Postgres
-- Node??
+- Node (version specified in .nvmrc file)
+- Yarn
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-## How to run the test suite
-TODO:
-bundle exec rspec (to ensure that the appropriate version of rspec is being used)
-
-Need to have chromedriver installed locally to run the feature test suite.
-
-## Deployment instructions
-The application is automatically deployed to fly.io when branches are merged to main.
-
-Note: In true production environment there would be a staging environment running and approvals would be required to merge changes to main.
-
-Check: Unsure if it is possible to enforce passing cicd pipelines
+## Database creation
+Run `docker compose up` to initialise a Postgres DB locally
+Once this is up and running you can run:
+`bundle exec rails db:create` (To connect rails to the database)
+`bundle exec rails db:migrate` (To run migrations to establish the DB Schema)
+`bundle exec rails db:seed` (To populate the appropriate sample data)
 
 ## Running the application locally.
-Requirements for running the app locally are as follows:
-- Docker
+Assuming PostgresDB has been initialised successfully
 
-To start the application with a Postgres DB run the following:
-`docker compose up`
+1. Run `bin/vite dev` To start the vite server for frontend assets
+2. Run `bundle exec rails s` To start the rails server locally.
 
-Postgres is exposed on port 5354??? so that this can be accessed from your local computer
+## How to run the test suite
+`bundle exec rspec spec` - To run ruby based tests
+`yarn test` - To run JavaScript test suite using Vitest
 
-then you need to run 
+Note:
+A local instance of a chromium based browser is required for capybara feature tests to be run
 
-bundle exec rails db:create
-`bundle exec rails db:migrate`
-`bundle exec rails s` to get the application up and running
 
-or alternatively
-
-`bundle exec rails c` to inspect the application
-
-This will start an instance of a PostgresDB locally and connect the rails application to it.
