@@ -6,4 +6,10 @@ export default defineConfig({
   plugins: [
     ViteRails(),
   ],
+    test: {
+    include: ['**/*.{test,spec}.{js,ts,jsx,tsx}'],
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './javascript/setupTests.js',
+  },
 })
