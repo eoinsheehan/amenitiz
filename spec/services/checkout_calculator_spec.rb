@@ -7,13 +7,17 @@ RSpec.describe CheckoutCalculator do
   context "when the checkout has items" do
     it "returns the cost for each item" do
       checkout_calculator = described_class.new(cart:)
+      expect(checkout_calculator.call[:items].first[:cost]).to eq 110
+    end
+    it "returns the total cost of the cart" do
+      checkout_calculator = described_class.new(cart:)
       expect(checkout_calculator.call[:total_cost]).to eq 110
     end
     context "when them had a previous associated cost" do
-      let(:cart) { {items: [{code: "GT1", quantity: 2, cost: 20}], total_cost: 200} }
+      let(:cart) { {items: [{code: "GT1", quantity: 2, cost: 110}], total_cost: 200} }
       it "updates the total cost of the cart" do
         checkout_calculator = described_class.new(cart:)
-        expect(checkout_calculator.call[:total_cost]).to eq 110
+        expect(checkout_calculator.call[:total_cost]).to eq 310
       end
     end
     context "when there are associated promotions" do

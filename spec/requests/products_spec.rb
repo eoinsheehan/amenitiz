@@ -1,48 +1,47 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'Products', type: :request do
-  let!(:green_tea) { create(:product, id: 1, name: 'green tea') }
-  let!(:coffee) { create(:product, id: 2, name: 'coffee') }
+RSpec.describe "Products", type: :request do
+  let!(:green_tea) { create(:product, id: 1, name: "green tea") }
+  let!(:coffee) { create(:product, id: 2, name: "coffee") }
 
-  describe 'GET /products (HTML)' do
-    it 'renders the HTML view' do
-      get '/products'
+  describe "GET /products (HTML)" do
+    it "renders the HTML view" do
+      get "/products"
       expect(response).to have_http_status(:ok)
-      expect(response.content_type).to include('text/html')
-      expect(response.body).to include('green tea')
+      expect(response.content_type).to include("text/html")
+      expect(response.body).to include("green tea")
     end
   end
 
-  describe 'GET /products.json (JSON)' do
-    it 'returns JSON data with all products' do
-      get '/products.json'
+  describe "GET /products.json (JSON)" do
+    it "returns JSON data with all products" do
+      get "/products.json"
       expect(response).to have_http_status(:ok)
-      expect(response.content_type).to include('application/json')
+      expect(response.content_type).to include("application/json")
 
       data = JSON.parse(response.body)
       expect(data.size).to eq(2)
-      expect(data.map { |p| p['name'] }).to include('green tea', 'coffee')
+      expect(data.map { |p| p["name"] }).to include("green tea", "coffee")
     end
   end
 
-  describe 'GET /product/:id (HTML)' do
-    it 'renders the HTML view' do
-      get '/products/1'
+  describe "GET /product/:id (HTML)" do
+    it "renders the HTML view" do
+      get "/products/1"
       expect(response).to have_http_status(:ok)
-      expect(response.content_type).to include('text/html')
-      expect(response.body).to include('green tea')
+      expect(response.content_type).to include("text/html")
+      expect(response.body).to include("green tea")
     end
   end
 
-  describe 'GET /products.json (JSON)' do
-    it 'returns JSON data for the relevant product' do
+  describe "GET /products.json (JSON)" do
+    it "returns JSON data for the relevant product" do
       get "/products/#{green_tea.id}.json"
       expect(response).to have_http_status(:ok)
-      expect(response.content_type).to include('application/json')
+      expect(response.content_type).to include("application/json")
 
       data = JSON.parse(response.body)
-      expect(data["name"]).to eq('green tea')
+      expect(data["name"]).to eq("green tea")
     end
   end
 end
-

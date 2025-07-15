@@ -1,10 +1,11 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi, beforeAll } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import App from './App'
 
 describe('App component', () => {
-      beforeAll(() => {
+  beforeAll(() => {
     // Mock fetch for /products.json
     global.fetch = vi.fn(() =>
       Promise.resolve({
@@ -12,11 +13,11 @@ describe('App component', () => {
         json: () => Promise.resolve([
           { id: 1, name: 'Product A' },
           { id: 2, name: 'Product B' },
-          { id: 3, name: 'Product C' },
-        ]),
+          { id: 3, name: 'Product C' }
+        ])
       })
-    );
-  });
+    )
+  })
 
   it('always shows the navigation bar', () => {
     render(

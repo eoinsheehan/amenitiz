@@ -1,8 +1,8 @@
-import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import Product from './Product';
+import React from 'react'
+import { render, screen, waitFor } from '@testing-library/react'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import Product from './Product'
 
 // Mock product data
 const mockProduct = {
@@ -10,13 +10,13 @@ const mockProduct = {
   price: '25',
   description: 'Green tea is good for your health',
   code: 'GT1'
-};
+}
 
 describe('Product component', () => {
   beforeEach(() => {
     // Clear mocks and localStorage before each test
-    vi.resetAllMocks();
-    localStorage.clear();
+    vi.resetAllMocks()
+    localStorage.clear()
 
     global.fetch = vi.fn(() =>
       new Promise((resolve) => {
@@ -24,42 +24,42 @@ describe('Product component', () => {
           resolve({
             ok: true,
             json: () => Promise.resolve(mockProduct)
-          });
-        }, 50);
+          })
+        }, 50)
       })
-    );
-  });
+    )
+  })
 
   it('shows "Product not yet available" before the product loads', async () => {
     render(
       <MemoryRouter initialEntries={['/products/1']}>
         <Routes>
-          <Route path="/products/:productId" element={<Product />} />
+          <Route path='/products/:productId' element={<Product />} />
         </Routes>
       </MemoryRouter>
-    );
+    )
 
     // Immediately check for loading message
-    expect(screen.getByText(/product not yet available/i)).toBeInTheDocument();
+    expect(screen.getByText(/product not yet available/i)).toBeInTheDocument()
 
     // Wait for product to load (optional — not strictly needed in this test)
-    await waitFor(() => screen.getByText(mockProduct.name));
-  });
+    await waitFor(() => screen.getByText(mockProduct.name))
+  })
 
   it('displays product name, price, and description after loading', async () => {
     render(
       <MemoryRouter initialEntries={['/products/1']}>
         <Routes>
-          <Route path="/products/:productId" element={<Product />} />
+          <Route path='/products/:productId' element={<Product />} />
         </Routes>
       </MemoryRouter>
-    );
+    )
 
     // Wait for data to render
     await waitFor(() => {
-      expect(screen.getByText(mockProduct.name)).toBeInTheDocument();
-      expect(screen.getByText(mockProduct.price)).toBeInTheDocument();
-      expect(screen.getByText(mockProduct.description)).toBeInTheDocument();
-    });
-  });
-});
+      expect(screen.getByText(mockProduct.name)).toBeInTheDocument()
+      expect(screen.getByText(mockProduct.price)).toBeInTheDocument()
+      expect(screen.getByText(mockProduct.description)).toBeInTheDocument()
+    })
+  })
+})

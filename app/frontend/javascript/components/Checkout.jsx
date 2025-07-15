@@ -9,13 +9,13 @@ const Checkout = () => {
   React.useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart') || '{}')
 
-      // Don't send request if cart is empty or has no items
-  if (!cart || !Array.isArray(cart.items) || cart.items.length === 0) {
-    setStatus('Checkout complete')
-    setItems([]) // explicitly set empty items
-    setTotal(0)
-    return
-  }
+    // Don't send request if cart is empty or has no items
+    if (!cart || !Array.isArray(cart.items) || cart.items.length === 0) {
+      setStatus('Checkout complete')
+      setItems([]) // explicitly set empty items
+      setTotal(0)
+      return
+    }
 
     const token = document.querySelector('meta[name="csrf-token"]')?.content
 
@@ -23,7 +23,7 @@ const Checkout = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'X-CSRF-Token': token
       },
       body: JSON.stringify(cart)
@@ -34,7 +34,7 @@ const Checkout = () => {
       })
       .then(data => {
         setTotal(data.total_cost)
-        setItems(data.items || [])  // Capture items array
+        setItems(data.items || []) // Capture items array
         setStatus('Checkout complete')
       })
       .catch(err => {
@@ -45,7 +45,7 @@ const Checkout = () => {
   }, [])
 
   return (
-    <div className="container mt-4">
+    <div className='container mt-4'>
       <h2>Checkout Summary</h2>
 
       {status === 'Loading...' && <p>Processing checkout...</p>}
@@ -53,36 +53,38 @@ const Checkout = () => {
       {status === 'Checkout complete' && (
         <>
           <h4>Items:</h4>
-          {items.length === 0 ? (
-            <p>No items in checkout.</p>
-          ) : (
-            <table className="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Cost</th>
-                  <th>Quantity</th>
-                  {/* Add more columns if needed */}
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item, idx) => (
-                  <tr key={idx}>
-                    <td>{item.code}</td>
-                    <td>${item.cost}</td>
-                    <td>{item.quantity}</td>
-                    {/* Add more attributes as needed */}
+          {items.length === 0
+            ? (
+              <p>No items in checkout.</p>
+              )
+            : (
+              <table className='table table-bordered'>
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Cost</th>
+                    <th>Quantity</th>
+                    {/* Add more columns if needed */}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-          <p id="total-cost"><strong>Total cost:</strong> ${total}</p>
+                </thead>
+                <tbody>
+                  {items.map((item, idx) => (
+                    <tr key={idx}>
+                      <td>{item.code}</td>
+                      <td>${item.cost}</td>
+                      <td>{item.quantity}</td>
+                      {/* Add more attributes as needed */}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              )}
+          <p id='total-cost'><strong>Total cost:</strong> ${total}</p>
 
         </>
       )}
 
-      {error && <p className="text-danger">{error}</p>}
+      {error && <p className='text-danger'>{error}</p>}
     </div>
   )
 }

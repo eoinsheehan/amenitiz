@@ -7,9 +7,9 @@ import Checkout from './Checkout.jsx'
 const App = () => {
   return (
     <>
-    <nav>
-        <Link to="/">Home</Link> |
-        <Link to="/checkout">Checkout</Link>
+      <nav>
+        <Link to='/'>Home</Link> |
+        <Link to='/checkout'>Checkout</Link>
       </nav>
       <Routes>
         <Route path='/' element={<Catalogue />} />

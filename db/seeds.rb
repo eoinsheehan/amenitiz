@@ -14,6 +14,3 @@ Product.create(name: "Strawberries", description: "Best eaten during Wimbledon",
 Promotion.create(discount: 0.3333, code: "DIS33", threshold: 3)
 Promotion.create(discount: 0.1, code: "DIS10", threshold: 3)
 Promotion.create(code: "BOGO", description: "Buy one get one free on green tea products courtesy of the CEO.")
-
-
-
