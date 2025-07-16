@@ -21,27 +21,38 @@ const Checkout = () => {
   }, [])
 
   return (
-    <div className='container mt-4'>
-      <h2>Welcome to the checkout</h2>
+<div className="container mt-4">
+  <h2>Welcome to the checkout</h2>
 
-      {status === 'Loading...' && <p>Processing checkout...</p>}
+  {status === 'Loading...' && <p>Processing checkout...</p>}
 
-      {status === 'Checkout complete' && (
-        <>
-          {items.length === 0
-            ? (
-              <p>No items in checkout.</p>
-              )
-            : (
-              <div>
-                <h3>Here are all the items in your cart</h3>
-                {items.map((item, idx) => <CartItem key={idx} item={item} updateCartVersion={updateCartVersion} />)}
-              </div>
-              )}
-          <div><CheckoutTotals cartVersion={cartVersion} /></div>
-        </>
+  {status === 'Checkout complete' && (
+    <>
+      {items.length === 0 ? (
+        <p>No items in checkout.</p>
+      ) : (
+        <div className="row mt-4">
+          {/* Left Column: Cart Items (75%) */}
+          <div className="col-md-9">
+            <h3>Here are all the items in your cart</h3>
+            <div className="d-flex flex-column gap-3">
+              {items.map((item, idx) => (
+                <CartItem key={idx} item={item} updateCartVersion={updateCartVersion} />
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column: Checkout Totals (25%) */}
+          <div className="col-md-3 mt-4 mt-md-0">
+            <CheckoutTotals cartVersion={cartVersion} />
+          </div>
+        </div>
       )}
-    </div>
+    </>
+  )}
+</div>
+
+
   )
 }
 

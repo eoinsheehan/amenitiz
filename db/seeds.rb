@@ -8,9 +8,9 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Product.create(name: "Green tea", description: "Helps to keep your health", price: 3.11, code: "GT1", promotion_code: "BOGO")
-Product.create(name: "Coffee", description: "A product.", price: 11.23, code: "CF1", promotion_code: "DIS33")
-Product.create(name: "Strawberries", description: "Best eaten during Wimbledon", price: 5.00, promotion_code: "DIS10", code: "SR1")
+Product.create(name: "Green tea", description: Faker::Lorem.paragraphs(number: 4).join("\n\n"), price: 3.11, code: "GT1", promotion_code: "BOGO")
+Product.create(name: "Coffee", description: Faker::Lorem.paragraphs(number: 4).join("\n\n"), price: 11.23, code: "CF1", promotion_code: "DIS33")
+Product.create(name: "Strawberries", description: Faker::Lorem.paragraphs(number: 4).join("\n\n"), price: 5.00, promotion_code: "DIS10", code: "SR1")
 Promotion.create(discount: 0.3333, code: "DIS33", threshold: 3)
 Promotion.create(discount: 0.1, code: "DIS10", threshold: 3)
 Promotion.create(code: "BOGO", description: "Buy one get one free on green tea products courtesy of the CEO.")
