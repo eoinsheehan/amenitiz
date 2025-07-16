@@ -5,7 +5,7 @@ import Checkout from './Checkout'
 
 // Stub CheckoutTotals
 vi.mock('./CheckoutTotals', () => ({
-  default: () => <div data-testid="mock-checkout-totals"/>
+  default: () => <div data-testid='mock-checkout-totals' />
 }))
 
 const mockCart = {
@@ -44,13 +44,13 @@ describe('Checkout component', () => {
       localStorage.setItem('cart', JSON.stringify(mockCart))
     })
 
-  it('renders one CartItem per item in the cart', async () => {
-    render(<Checkout />)
+    it('renders one CartItem per item in the cart', async () => {
+      render(<Checkout />)
 
-    await waitFor(() => {
-      const cartItems = screen.getAllByTestId('cart-item')
-      expect(cartItems).toHaveLength(mockCart.items.length)
+      await waitFor(() => {
+        const cartItems = screen.getAllByTestId('cart-item')
+        expect(cartItems).toHaveLength(mockCart.items.length)
+      })
     })
-  })
   })
 })

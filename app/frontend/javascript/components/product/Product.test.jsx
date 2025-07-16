@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, waitFor, fireEvent } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import Product from './Product'
@@ -24,14 +24,12 @@ describe('Product component', () => {
             json: () => Promise.resolve(mockProduct)
           })
         }, 50)
-
       })
     )
-
   })
 
   it('shows "Product not yet available" before the product loads', () => {
-          render(
+    render(
       <MemoryRouter initialEntries={['/products/1']}>
         <Routes>
           <Route path='/products/:productId' element={<Product />} />
@@ -42,7 +40,7 @@ describe('Product component', () => {
   })
 
   it('displays product name, price, and description after loading', async () => {
-          render(
+    render(
       <MemoryRouter initialEntries={['/products/1']}>
         <Routes>
           <Route path='/products/:productId' element={<Product />} />
@@ -55,6 +53,5 @@ describe('Product component', () => {
       expect(screen.getByText(mockProduct.description)).toBeInTheDocument()
     })
   })
-  
-  }
+}
 )

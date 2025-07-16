@@ -6,14 +6,14 @@ import CartItem from './CartItem'
 describe('CartItem component', () => {
   it('renders code, cost, and quantity', () => {
     const mockItem = {
-      code: 'ABC123',
+      name: 'Green tea',
       price: 25.5,
       quantity: 2
     }
 
     render(<CartItem item={mockItem} />)
 
-    expect(screen.getByText(/code: abc123/i)).toBeInTheDocument()
+    expect(screen.getByText(/name: green tea/i)).toBeInTheDocument()
     expect(screen.getByText(/\$25.5/)).toBeInTheDocument()
   })
 })

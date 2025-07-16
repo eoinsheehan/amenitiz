@@ -40,12 +40,10 @@ afterEach(() => {
 })
 
 describe('Checkout component', () => {
-
   describe('with a valid cart in localStorage', () => {
     beforeEach(() => {
       localStorage.setItem('cart', JSON.stringify(mockCart))
     })
-
 
     it('displays items and total when checkout succeeds', async () => {
       global.fetch = vi.fn(() =>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const QuantityAdjuster = ({ product }) => {
+const QuantityAdjuster = ({ product, updateCartVersion = () => {} }) => {
   const [amount, setAmount] = useState(0)
 
   useEffect(() => {
@@ -26,6 +26,7 @@ const QuantityAdjuster = ({ product }) => {
         existingItem.quantity += 1
       } else {
         cart.items.push({
+          name: product.name,
           code: product.code,
           price: product.price,
           quantity: 1
@@ -46,6 +47,8 @@ const QuantityAdjuster = ({ product }) => {
     const updatedItem = cart.items.find(item => item.code === product.code)
     const newQty = updatedItem?.quantity || 0
     setAmount(newQty)
+    updateCartVersion()
+    updateCartVersion(prev => prev + 1)
   }
 
   return (

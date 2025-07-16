@@ -23,7 +23,7 @@ const Product = () => {
               <h1>{product.price}</h1>
 
               <h1>{product.description}</h1>
-              <QuantityAdjuster product={product}/>
+              <QuantityAdjuster product={product} />
             </div>
 
             )

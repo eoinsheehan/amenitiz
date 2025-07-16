@@ -1,7 +1,6 @@
 import React from 'react'
-import CartItem from './CartItem'
 
-const Checkout = () => {
+const CheckoutTotals = (cartVersion) => {
   const [status, setStatus] = React.useState('Loading...')
   const [total, setTotal] = React.useState(null)
   const [items, setItems] = React.useState([])
@@ -43,17 +42,19 @@ const Checkout = () => {
         setError('Checkout failed. Please try again.')
         setStatus('Error')
       })
-  }, [])
+  }, [cartVersion])
 
   return (
     <div className='container mt-4'>
-      <h2>Checkout Summary</h2>
+      <h2>And here is what they are coming to</h2>
 
       {status === 'Loading...' && <p>Processing checkout...</p>}
 
       {status === 'Checkout complete' && (
         <>
-
+          {items.map((item, idx) => {
+            return <p key={idx}>{item.name} x{item.quantity} is costing you {item.cost}</p>
+          })}
           <p id='total-cost'><strong>Total cost:</strong> ${total}</p>
 
         </>
@@ -64,4 +65,4 @@ const Checkout = () => {
   )
 }
 
-export default Checkout
+export default CheckoutTotals

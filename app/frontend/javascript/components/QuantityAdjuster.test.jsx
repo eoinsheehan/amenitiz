@@ -25,7 +25,7 @@ describe('Product component (with QuantityAdjuster)', () => {
 
   it('increases amount when clicking Add button', async () => {
     render(
-        <QuantityAdjuster product={mockProduct}/>
+      <QuantityAdjuster product={mockProduct} />
     )
 
     expect(screen.getByText(/Quantity:/)).toHaveTextContent('0')
@@ -39,8 +39,8 @@ describe('Product component (with QuantityAdjuster)', () => {
   })
 
   it('retains amount at zero when Subtract is clicked with nothing in cart', async () => {
-     render(
-        <QuantityAdjuster product={mockProduct}/>
+    render(
+      <QuantityAdjuster product={mockProduct} />
     )
 
     expect(screen.getByText(/Quantity:/)).toHaveTextContent('0')
@@ -65,7 +65,7 @@ describe('Product component (with QuantityAdjuster)', () => {
     }
     localStorage.setItem('cart', JSON.stringify(initialCart))
     render(
-        <QuantityAdjuster product={mockProduct}/>
+      <QuantityAdjuster product={mockProduct} />
     )
 
     expect(screen.getByText(/Quantity:/)).toHaveTextContent('1')
