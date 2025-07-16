@@ -13,7 +13,7 @@ const Checkout = () => {
     // Don't send request if cart is empty or has no items
     if (!cart || !Array.isArray(cart.items) || cart.items.length === 0) {
       setStatus('Checkout complete')
-      setItems([]) // explicitly set empty items
+      setItems([])
       setTotal(0)
       return
     }
@@ -53,17 +53,7 @@ const Checkout = () => {
 
       {status === 'Checkout complete' && (
         <>
-          <h4>Items:</h4>
-          {items.length === 0
-            ? (
-              <p>No items in checkout.</p>
-              )
-            : (
-              <div>
 
-                  {items.map((item, idx) => <CartItem key={idx} item={item} /> )}
-                  </div>
-              )}
           <p id='total-cost'><strong>Total cost:</strong> ${total}</p>
 
         </>

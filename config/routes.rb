@@ -13,4 +13,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "react#show"
+  get "*path", to: "react#show", constraints: ->(request) do
+  !request.xhr? && request.format.html?
+end
 end

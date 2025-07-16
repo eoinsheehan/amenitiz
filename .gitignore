@@ -9,6 +9,8 @@
 
 # Ignore node modules
 /node_modules
+/public/vite-dev/*
+/app/frontend/node_modules/*
 
 # Ignore all environment files (except templates).
 /.env*
