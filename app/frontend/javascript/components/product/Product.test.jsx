@@ -4,7 +4,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import Product from './Product'
 
-// Mock product data
 const mockProduct = {
   name: 'Green tea',
   price: '25',
@@ -14,7 +13,6 @@ const mockProduct = {
 
 describe('Product component', () => {
   beforeEach(() => {
-    // Clear mocks and localStorage before each test
     vi.resetAllMocks()
     localStorage.clear()
 
@@ -30,7 +28,7 @@ describe('Product component', () => {
     )
   })
 
-  it('shows "Product not yet available" before the product loads', async () => {
+  it('shows "Product not yet available" before the product loads', () => {
     render(
       <MemoryRouter initialEntries={['/products/1']}>
         <Routes>
@@ -38,12 +36,7 @@ describe('Product component', () => {
         </Routes>
       </MemoryRouter>
     )
-
-    // Immediately check for loading message
     expect(screen.getByText(/product not yet available/i)).toBeInTheDocument()
-
-    // Wait for product to load (optional — not strictly needed in this test)
-    await waitFor(() => screen.getByText(mockProduct.name))
   })
 
   it('displays product name, price, and description after loading', async () => {
@@ -54,12 +47,11 @@ describe('Product component', () => {
         </Routes>
       </MemoryRouter>
     )
-
-    // Wait for data to render
     await waitFor(() => {
       expect(screen.getByText(mockProduct.name)).toBeInTheDocument()
       expect(screen.getByText(mockProduct.price)).toBeInTheDocument()
       expect(screen.getByText(mockProduct.description)).toBeInTheDocument()
     })
   })
-})
+}
+)

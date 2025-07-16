@@ -1,8 +1,8 @@
 import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
-import Catalogue from './Catalogue.jsx'
-import Product from './Product.jsx'
-import Checkout from './Checkout.jsx'
+import Catalogue from './catalogue/Catalogue.jsx'
+import Product from './product/Product.jsx'
+import Checkout from './checkout/Checkout.jsx'
 
 const App = () => {
   return (
