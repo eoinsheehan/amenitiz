@@ -7,7 +7,7 @@ const Product = () => {
   const [product, setProduct] = React.useState(null)
 
   React.useEffect(() => {
-    fetch(`/products/${productId}.json`)
+    fetch(`/admin/products/${productId}.json`)
       .then((res) => res.json())
       .then((data) => setProduct(data))
   }, [])

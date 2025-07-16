@@ -6,7 +6,6 @@ import Catalogue from './Catalogue'
 
 describe('Catalogue component', () => {
   beforeAll(() => {
-    // Mock fetch for /products.json
     global.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,

@@ -4,7 +4,7 @@ import { Outlet, Link } from 'react-router-dom'
 const Catalogue = () => {
   const [data, setData] = React.useState([])
   React.useEffect(() => {
-    fetch('/products.json')
+    fetch('/admin/products.json')
       .then((res) => res.json())
       .then((data) => setData(data))
   }, [])

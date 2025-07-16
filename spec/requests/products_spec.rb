@@ -4,18 +4,18 @@ RSpec.describe "Products", type: :request do
   let!(:green_tea) { create(:product, id: 1, name: "green tea") }
   let!(:coffee) { create(:product, id: 2, name: "coffee") }
 
-  describe "GET /products (HTML)" do
+  describe "GET /admin/products (HTML)" do
     it "renders the HTML view" do
-      get "/products"
+      get "/admin/products"
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to include("text/html")
       expect(response.body).to include("green tea")
     end
   end
 
-  describe "GET /products.json (JSON)" do
+  describe "GET /admin/products.json (JSON)" do
     it "returns JSON data with all products" do
-      get "/products.json"
+      get "/admin/products.json"
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to include("application/json")
 
@@ -25,18 +25,18 @@ RSpec.describe "Products", type: :request do
     end
   end
 
-  describe "GET /product/:id (HTML)" do
+  describe "GET /admin/product/:id (HTML)" do
     it "renders the HTML view" do
-      get "/products/1"
+      get "/admin/products/1"
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to include("text/html")
       expect(response.body).to include("green tea")
     end
   end
 
-  describe "GET /products.json (JSON)" do
+  describe "GET /admin/products.json (JSON)" do
     it "returns JSON data for the relevant product" do
-      get "/products/#{green_tea.id}.json"
+      get "/admin/products/#{green_tea.id}.json"
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to include("application/json")
 

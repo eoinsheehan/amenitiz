@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :products
+  end
   get "*path", to: "react#show", constraints: ->(request) do
     !request.xhr? && request.format.html?
   end
   # Defines the root path route ("/")
   root "react#show"
-  resources :products
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
