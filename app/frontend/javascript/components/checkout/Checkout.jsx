@@ -1,6 +1,6 @@
 import React from 'react'
 import CartItem from './CartItem'
-import CheckoutTotals from './CheckoutTotals'
+import CheckoutSummary from './CheckoutSummary'
 
 const Checkout = () => {
   const [status, setStatus] = React.useState('Loading...')
@@ -34,7 +34,6 @@ const Checkout = () => {
               )
             : (
               <div className='row mt-4'>
-                {/* Left Column: Cart Items (75%) */}
                 <div className='col-md-9'>
                   <h3>Here are all the items in your cart</h3>
                   <div className='d-flex flex-column gap-3'>
@@ -44,9 +43,8 @@ const Checkout = () => {
                   </div>
                 </div>
 
-                {/* Right Column: Checkout Totals (25%) */}
                 <div className='col-md-3 mt-4 mt-md-0'>
-                  <CheckoutTotals cartVersion={cartVersion} />
+                  <CheckoutSummary cartVersion={cartVersion} />
                 </div>
               </div>
               )}

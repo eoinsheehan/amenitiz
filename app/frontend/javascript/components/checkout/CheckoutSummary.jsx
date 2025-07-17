@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CheckoutTotals = (cartVersion) => {
+const CheckoutSummary = (cartVersion) => {
   const [status, setStatus] = React.useState('Loading...')
   const [total, setTotal] = React.useState(null)
   const [items, setItems] = React.useState([])
@@ -46,7 +46,7 @@ const CheckoutTotals = (cartVersion) => {
 
   return (
     <div className='container mt-4'>
-      <h2>And here is what they are coming to</h2>
+      <h2>Checkout Summary</h2>
 
       {status === 'Loading...' && <p>Processing checkout...</p>}
 
@@ -90,4 +90,4 @@ const CheckoutTotals = (cartVersion) => {
   )
 }
 
-export default CheckoutTotals
+export default CheckoutSummary

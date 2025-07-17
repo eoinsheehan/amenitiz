@@ -6,8 +6,9 @@ RSpec.feature "Products" do
     it "renders list of all products" do
       visit root_path
       expect(page).to have_content "List of all products"
-      product = find('.card', text: 'Green tea')
-      expect(product).to have_link(href: "/products/#{green_tea.id}")
+      product = find(".card", text: "Green tea")
+      product.click
+      expect(page).to have_text(green_tea.description)
     end
   end
   context "when user clicks on a product" do

@@ -14,7 +14,7 @@ module Admin
 
       respond_to do |format|
         format.html
-        format.json { render json: @product }
+        format.json { render json: @product.as_json(include: [:promotion]) }
       end
     end
   end

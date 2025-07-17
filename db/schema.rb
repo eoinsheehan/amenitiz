@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_14_015736) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_17_004459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,9 +21,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_14_015736) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "promotion_code"
     t.string "code"
+    t.bigint "promotion_id"
     t.index ["code"], name: "index_products_on_code", unique: true
+    t.index ["promotion_id"], name: "index_products_on_promotion_id"
   end
 
   create_table "promotions", force: :cascade do |t|
@@ -35,4 +36,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_14_015736) do
     t.string "code"
     t.index ["code"], name: "index_promotions_on_code", unique: true
   end
+
+  add_foreign_key "products", "promotions"
 end

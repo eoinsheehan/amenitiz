@@ -31,6 +31,8 @@ const Product = () => {
               <h3 className='text-success' data-testid='item-price'>€{product.price}</h3>
               <p className='mt-3 flex-grow-1'>{product.description}</p>
 
+              <p className="alert alert-success" role="alert">{product.promotion.description}</p>
+
               <p className='text-muted fw-semibold mb-2'>Select quantity to add to cart:</p>
               <QuantityAdjuster product={product} />
             </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
-import CheckoutTotals from './CheckoutTotals'
+import CheckoutTotals from './CheckoutSummary'
 
 const mockCart = {
   items: [
@@ -56,7 +56,7 @@ describe('Checkout component', () => {
       render(<CheckoutTotals />)
 
       await waitFor(() => {
-        expect(document.getElementById('total-cost')).toHaveTextContent('$50')
+        expect(document.getElementById('total-cost')).toHaveTextContent('€50')
       })
     })
 

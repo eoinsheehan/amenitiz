@@ -23,7 +23,7 @@ RSpec.describe CheckoutCalculator do
     context "when there are associated promotions" do
       context "when there is a buy one get one free offer" do
         let!(:promotion) { create(:promotion, code: "BOGO") }
-        let!(:product) { create(:product, code: "GT1", price: 55.00, promotion_code: promotion.code) }
+        let!(:product) { create(:product, code: "GT1", price: 55.00, promotion:) }
         it "returns the correct discount price" do
           checkout_calculator = described_class.new(cart:)
           expect(checkout_calculator.call[:total_cost]).to eq 55
@@ -33,7 +33,7 @@ RSpec.describe CheckoutCalculator do
         context "when the discount is 10%" do
           let(:cart) { {items: [{code: "SR1", quantity: 3, cost: nil}], total_cost: nil} }
           let!(:promotion) { create(:promotion, code: "DIS10", discount: 0.10, threshold: 3) }
-          let!(:product) { create(:product, code: "SR1", price: 5.00, promotion_code: promotion.code) }
+          let!(:product) { create(:product, code: "SR1", price: 5.00, promotion:) }
           it "returns the correct cost" do
             checkout_calculator = described_class.new(cart:)
             expect(checkout_calculator.call[:total_cost]).to eq 13.50
@@ -42,7 +42,7 @@ RSpec.describe CheckoutCalculator do
         context "when the discount is one third" do
           let(:cart) { {items: [{code: "CF1", quantity: 3, cost: nil}], total_cost: nil} }
           let!(:promotion) { create(:promotion, code: "DIS33", discount: 0.3333, threshold: 3) }
-          let!(:product) { create(:product, code: "CF1", price: 11.23, promotion_code: promotion.code) }
+          let!(:product) { create(:product, code: "CF1", price: 11.23, promotion:) }
           it "returns the correct cost" do
             checkout_calculator = described_class.new(cart:)
             expect(checkout_calculator.call[:total_cost]).to eq 22.46
