@@ -34,7 +34,7 @@ describe('Product component (with QuantityAdjuster)', () => {
     fireEvent.click(increaseButton)
 
     await waitFor(() => {
-      expect(screen.getByTestId('item-quantity').toHaveTextContent('1'))
+      expect(screen.getByTestId('item-quantity')).toHaveTextContent('1')
     })
   })
 

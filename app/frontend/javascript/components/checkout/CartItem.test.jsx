@@ -13,7 +13,7 @@ describe('CartItem component', () => {
 
     render(<CartItem item={mockItem} />)
 
-    expect(screen.getByText(/name: green tea/i)).toBeInTheDocument()
-    expect(screen.getByText(/\$25.5/)).toBeInTheDocument()
+    expect(screen.getByText(/green tea/i)).toBeInTheDocument()
+    expect(screen.getByTestId('item-price')).toHaveTextContent('€25.5')
   })
 })

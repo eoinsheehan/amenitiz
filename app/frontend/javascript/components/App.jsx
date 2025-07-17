@@ -11,15 +11,14 @@ import 'bootstrap'
 const App = () => {
   return (
     <>
-<nav className="navbar bg-dark bg-opacity-75 text-white shadow-sm mb-4">
-  <div className="container d-flex justify-content-between align-items-center">
-    <Link className="navbar-brand text-white" to="/">Home</Link>
-    <Link to="/checkout" className="btn btn-light">
-      Checkout
-    </Link>
-  </div>
-</nav>
-
+      <nav className='navbar bg-dark bg-opacity-75 text-white shadow-sm mb-4'>
+        <div className='container d-flex justify-content-between align-items-center'>
+          <Link className='navbar-brand text-white' to='/'>Home</Link>
+          <Link to='/checkout' className='btn btn-light'>
+            Checkout
+          </Link>
+        </div>
+      </nav>
 
       <Routes>
         <Route path='/' element={<Catalogue />} />

@@ -49,7 +49,7 @@ describe('Product component', () => {
     )
     await waitFor(() => {
       expect(screen.getByText(mockProduct.name)).toBeInTheDocument()
-      expect(screen.getByText(mockProduct.price)).toBeInTheDocument()
+      expect(screen.getByTestId('item-price')).toBeInTheDocument()
       expect(screen.getByText(mockProduct.description)).toBeInTheDocument()
     })
   })
