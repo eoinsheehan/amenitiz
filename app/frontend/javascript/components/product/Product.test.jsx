@@ -9,7 +9,7 @@ const mockProduct = {
   price: '25',
   description: 'Green tea is good for your health',
   code: 'GT1',
-  promotion: {description: "Buy one get one free"}
+  promotion: { description: 'Buy one get one free' }
 }
 
 describe('Product component', () => {
