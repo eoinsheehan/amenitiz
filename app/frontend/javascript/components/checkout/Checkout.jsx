@@ -1,6 +1,6 @@
 import React from 'react'
 import CartItem from './CartItem'
-import CheckoutTotals from './CheckoutTotals'
+import CheckoutSummary from './CheckoutSummary'
 
 const Checkout = () => {
   const [status, setStatus] = React.useState('Loading...')
@@ -33,15 +33,25 @@ const Checkout = () => {
               <p>No items in checkout.</p>
               )
             : (
-              <div>
-                <h3>Here are all the items in your cart</h3>
-                {items.map((item, idx) => <CartItem key={idx} item={item} updateCartVersion={updateCartVersion} />)}
+              <div className='row mt-4'>
+                <div className='col-md-9'>
+                  <h3>Here are all the items in your cart</h3>
+                  <div className='d-flex flex-column gap-3'>
+                    {items.map((item, idx) => (
+                      <CartItem key={idx} item={item} updateCartVersion={updateCartVersion} />
+                    ))}
+                  </div>
+                </div>
+
+                <div className='col-md-3 mt-4 mt-md-0'>
+                  <CheckoutSummary cartVersion={cartVersion} />
+                </div>
               </div>
               )}
-          <div><CheckoutTotals cartVersion={cartVersion} /></div>
         </>
       )}
     </div>
+
   )
 }
 

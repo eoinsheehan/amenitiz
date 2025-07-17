@@ -28,13 +28,13 @@ describe('Product component (with QuantityAdjuster)', () => {
       <QuantityAdjuster product={mockProduct} />
     )
 
-    expect(screen.getByText(/Quantity:/)).toHaveTextContent('0')
+    expect(screen.getByTestId('item-quantity')).toHaveTextContent('0')
 
-    const increaseButton = screen.getByText('Add')
+    const increaseButton = screen.getByTestId('add-item')
     fireEvent.click(increaseButton)
 
     await waitFor(() => {
-      expect(screen.getByText(/Quantity:/)).toHaveTextContent('1')
+      expect(screen.getByTestId('item-quantity')).toHaveTextContent('1')
     })
   })
 
@@ -43,13 +43,13 @@ describe('Product component (with QuantityAdjuster)', () => {
       <QuantityAdjuster product={mockProduct} />
     )
 
-    expect(screen.getByText(/Quantity:/)).toHaveTextContent('0')
+    expect(screen.getByTestId('item-quantity')).toHaveTextContent('0')
 
-    const subtractButton = screen.getByText('Reduce')
+    const subtractButton = screen.getByTestId('remove-item')
     fireEvent.click(subtractButton)
 
     await waitFor(() => {
-      expect(screen.getByText(/Quantity:/)).toHaveTextContent('0')
+      expect(screen.getByTestId('item-quantity')).toHaveTextContent('0')
     })
   })
 
@@ -68,13 +68,13 @@ describe('Product component (with QuantityAdjuster)', () => {
       <QuantityAdjuster product={mockProduct} />
     )
 
-    expect(screen.getByText(/Quantity:/)).toHaveTextContent('1')
+    expect(screen.getByTestId('item-quantity')).toHaveTextContent('1')
 
-    const subtractButton = screen.getByText('Reduce')
+    const subtractButton = screen.getByTestId('remove-item')
     fireEvent.click(subtractButton)
 
     await waitFor(() => {
-      expect(screen.getByText(/Quantity:/)).toHaveTextContent('0')
+      expect(screen.getByTestId('item-quantity')).toHaveTextContent('0')
     })
   })
 })

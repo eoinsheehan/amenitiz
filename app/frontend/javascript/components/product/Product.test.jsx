@@ -8,7 +8,8 @@ const mockProduct = {
   name: 'Green tea',
   price: '25',
   description: 'Green tea is good for your health',
-  code: 'GT1'
+  code: 'GT1',
+  promotion: { description: 'Buy one get one free' }
 }
 
 describe('Product component', () => {
@@ -49,8 +50,9 @@ describe('Product component', () => {
     )
     await waitFor(() => {
       expect(screen.getByText(mockProduct.name)).toBeInTheDocument()
-      expect(screen.getByText(mockProduct.price)).toBeInTheDocument()
+      expect(screen.getByTestId('item-price')).toBeInTheDocument()
       expect(screen.getByText(mockProduct.description)).toBeInTheDocument()
+      expect(screen.getByText(mockProduct.promotion.description)).toBeInTheDocument()
     })
   })
 }

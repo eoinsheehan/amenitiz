@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CheckoutTotals = (cartVersion) => {
+const CheckoutSummary = (cartVersion) => {
   const [status, setStatus] = React.useState('Loading...')
   const [total, setTotal] = React.useState(null)
   const [items, setItems] = React.useState([])
@@ -46,23 +46,48 @@ const CheckoutTotals = (cartVersion) => {
 
   return (
     <div className='container mt-4'>
-      <h2>And here is what they are coming to</h2>
+      <h2>Checkout Summary</h2>
 
       {status === 'Loading...' && <p>Processing checkout...</p>}
 
       {status === 'Checkout complete' && (
         <>
-          {items.map((item, idx) => {
-            return <p key={idx}>{item.name} x{item.quantity} is costing you {item.cost}</p>
-          })}
-          <p id='total-cost'><strong>Total cost:</strong> ${total}</p>
+          {items.length === 0
+            ? (
+              <p>No items in checkout.</p>
+              )
+            : (
+              <div>
+                {/* Header row */}
+                <div className='row fw-semibold border-bottom pb-2 mb-2'>
+                  <div className='col-8'>Product</div>
+                  <div className='col-4 text-end'>Cost</div>
+                </div>
 
+                {/* Item rows */}
+                {items.map((item, idx) => (
+                  <div className='row align-items-center mb-2' key={idx}>
+                    <div className='col-8'>
+                      {item.name} x{item.quantity}
+                    </div>
+                    <div className='col-4 text-end'>€{item.cost.toFixed(2)}</div>
+                  </div>
+                ))}
+
+                {/* Total row */}
+                <div className='row fw-bold border-top pt-2 mt-3'>
+                  <div className='col-8'>Total cost:</div>
+                  <div className='col-4 text-end' id='total-cost'>€{total.toFixed(2)}</div>
+                </div>
+              </div>
+              )}
         </>
       )}
 
       {error && <p className='text-danger'>{error}</p>}
     </div>
+
   )
 }
 
-export default CheckoutTotals
+export default CheckoutSummary

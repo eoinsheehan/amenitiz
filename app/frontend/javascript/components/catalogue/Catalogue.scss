@@ -1,0 +1,18 @@
+.catalogue-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  box-shadow: var(--bs-shadow); /* subtle default shadow */
+}
+
+.catalogue-card:hover {
+  box-shadow: var(--bs-shadow-lg); /* bigger shadow on hover */
+  transform: scale(1.03);
+  z-index: 1;
+}
+
+.catalogue-card-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+

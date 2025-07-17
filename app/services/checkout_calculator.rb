@@ -28,7 +28,7 @@ class CheckoutCalculator
   def item_cost(item:)
     quantity = item[:quantity]
     product = Product.find_by(code: item[:code])
-    promotion = Promotion.find_by(code: product.promotion_code) if product.promotion_code
+    promotion = product.promotion
     if promotion&.code == "BOGO"
       paid_quantity = (quantity / 2.0).ceil
       product.price * paid_quantity

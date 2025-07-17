@@ -52,11 +52,30 @@ const QuantityAdjuster = ({ product, updateCartVersion = () => {} }) => {
   }
 
   return (
-    <div>
-      <p>Quantity: {amount}</p>
-      <button onClick={() => updateCartItem('decrease')}>Reduce</button>
-      <button onClick={() => updateCartItem('increase')}>Add</button>
+    <div className='d-flex align-items-center gap-2'>
+      <button
+        className='btn btn-outline-secondary btn-sm'
+        onClick={() => updateCartItem('decrease')}
+        aria-label='Decrease quantity'
+        data-testid='remove-item'
+      >
+        −
+      </button>
+
+      <div className='px-3 py-1 border rounded bg-light text-center fw-semibold' data-testid='item-quantity'>
+        {amount}
+      </div>
+
+      <button
+        className='btn btn-outline-primary btn-sm'
+        onClick={() => updateCartItem('increase')}
+        aria-label='Increase quantity'
+        data-testid='add-item'
+      >
+        +
+      </button>
     </div>
+
   )
 }
 

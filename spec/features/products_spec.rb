@@ -1,12 +1,14 @@
 require "rails_helper"
 RSpec.feature "Products" do
-  let!(:green_tea) { create(:product, name: "Green tea", description: "Green tea is good for your health.") }
+  let!(:green_tea) { create(:product, name: "Green tea") }
 
   context "when user views all products" do
     it "renders list of all products" do
       visit root_path
       expect(page).to have_content "List of all products"
-      expect(page).to have_link("Green tea", href: "/products/#{green_tea.id}")
+      product = find(".card", text: "Green tea")
+      product.click
+      expect(page).to have_text(green_tea.description)
     end
   end
   context "when user clicks on a product" do
