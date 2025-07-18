@@ -9,7 +9,6 @@ const CheckoutSummary = (cartVersion) => {
   React.useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart') || '{}')
 
-    // Don't send request if cart is empty or has no items
     if (!cart || !Array.isArray(cart.items) || cart.items.length === 0) {
       setStatus('Checkout complete')
       setItems([])
@@ -34,7 +33,7 @@ const CheckoutSummary = (cartVersion) => {
       })
       .then(data => {
         setTotal(data.total_cost)
-        setItems(data.items || []) // Capture items array
+        setItems(data.items || [])
         setStatus('Checkout complete')
       })
       .catch(err => {
@@ -58,13 +57,11 @@ const CheckoutSummary = (cartVersion) => {
               )
             : (
               <div>
-                {/* Header row */}
                 <div className='row fw-semibold border-bottom pb-2 mb-2'>
                   <div className='col-8'>Product</div>
                   <div className='col-4 text-end'>Cost</div>
                 </div>
 
-                {/* Item rows */}
                 {items.map((item, idx) => (
                   <div className='row align-items-center mb-2' key={idx}>
                     <div className='col-8'>
@@ -74,7 +71,6 @@ const CheckoutSummary = (cartVersion) => {
                   </div>
                 ))}
 
-                {/* Total row */}
                 <div className='row fw-bold border-top pt-2 mt-3'>
                   <div className='col-8'>Total cost:</div>
                   <div className='col-4 text-end' id='total-cost'>€{total.toFixed(2)}</div>
