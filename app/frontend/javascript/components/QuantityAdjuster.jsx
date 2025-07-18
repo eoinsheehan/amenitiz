@@ -47,7 +47,6 @@ const QuantityAdjuster = ({ product, updateCartVersion = () => {} }) => {
     const updatedItem = cart.items.find(item => item.code === product.code)
     const newQty = updatedItem?.quantity || 0
     setAmount(newQty)
-    updateCartVersion()
     updateCartVersion(prev => prev + 1)
   }
 
@@ -59,7 +58,7 @@ const QuantityAdjuster = ({ product, updateCartVersion = () => {} }) => {
         aria-label='Decrease quantity'
         data-testid='remove-item'
       >
-        −
+        -
       </button>
 
       <div className='px-3 py-1 border rounded bg-light text-center fw-semibold' data-testid='item-quantity'>

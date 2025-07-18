@@ -25,7 +25,8 @@ const CheckoutSummary = (cartVersion) => {
         Accept: 'application/json',
         'X-CSRF-Token': token
       },
-      body: JSON.stringify(cart)
+
+      body: JSON.stringify({ checkout: cart })
     })
       .then(res => {
         if (!res.ok) throw new Error('Checkout failed')

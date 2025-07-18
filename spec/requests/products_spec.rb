@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "Products", type: :request do
-  let!(:green_tea) { create(:product, id: 1, name: "green tea") }
-  let!(:coffee) { create(:product, id: 2, name: "coffee") }
+  let!(:green_tea) { create(:product, id: 1, name: "green tea", code: "GT1") }
+  let!(:coffee) { create(:product, id: 2, name: "coffee", code: "CF1") }
 
   describe "GET /admin/products (HTML)" do
     it "renders the HTML view" do
