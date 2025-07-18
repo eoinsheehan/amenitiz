@@ -9,7 +9,6 @@ const CartItem = ({ item, updateCartVersion }) => {
       <div className='col-md-9' data-testid='cart-item'>
         <div className='card shadow-sm h-100'>
           <div className='row g-0 align-items-center'>
-            {/* Left: Product Image */}
             <div className='col-md-4'>
               <img
                 src={`/${item.code}.svg`}
@@ -18,7 +17,6 @@ const CartItem = ({ item, updateCartVersion }) => {
               />
             </div>
 
-            {/* Right: Item details */}
             <div className='col-md-8'>
               <div className='card-body'>
                 <h5 className='card-title'>{item.name}</h5>

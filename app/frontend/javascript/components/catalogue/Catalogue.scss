@@ -1,11 +1,11 @@
 .catalogue-card {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   cursor: pointer;
-  box-shadow: var(--bs-shadow); /* subtle default shadow */
+  box-shadow: var(--bs-shadow);
 }
 
 .catalogue-card:hover {
-  box-shadow: var(--bs-shadow-lg); /* bigger shadow on hover */
+  box-shadow: var(--bs-shadow-lg);
   transform: scale(1.03);
   z-index: 1;
 }

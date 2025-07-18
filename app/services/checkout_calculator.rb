@@ -30,13 +30,21 @@ class CheckoutCalculator
     product = Product.find_by(code: item[:code])
     promotion = product.promotion
     if promotion&.code == "BOGO"
-      paid_quantity = (quantity / 2.0).ceil
-      product.price * paid_quantity
+      buy_one_get_one_free_cost(product:, quantity:)
     elsif promotion&.code&.start_with?("DIS") && quantity >= promotion.threshold
-      adjusted_price = product.price * (1 - promotion.discount)
-      (adjusted_price * quantity).round(2)
+      percentage_discount_cost(product:, quantity:, promotion:)
     else
       product.price * quantity
     end
+  end
+
+  def buy_one_get_one_free_cost(product:, quantity:)
+    paid_quantity = (quantity / 2.0).ceil
+    product.price * paid_quantity
+  end
+
+  def percentage_discount_cost(product:, quantity:, promotion:)
+    adjusted_price = product.price * (1 - promotion.discount)
+    (adjusted_price * quantity).round(2)
   end
 end

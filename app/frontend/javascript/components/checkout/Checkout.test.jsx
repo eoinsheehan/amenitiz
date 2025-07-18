@@ -39,6 +39,11 @@ describe('Checkout component', () => {
     })
   })
 
+  it('displays "No items in checkout." when cart does not exist', () => {
+    render(<Checkout />)
+    expect(screen.getByText('No items in checkout.')).toBeInTheDocument()
+  })
+
   describe('with a valid cart in localStorage', () => {
     beforeEach(() => {
       localStorage.setItem('cart', JSON.stringify(mockCart))
